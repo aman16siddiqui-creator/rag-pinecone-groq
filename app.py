@@ -59,15 +59,25 @@ st.markdown(
     <style>
       {theme_vars_css(st.session_state.theme)}
 
-      /* Hide the menu/footer chrome we don't want, but keep the header
-         itself intact — it's what holds the "reopen sidebar" arrow once
-         the sidebar has been collapsed. Hiding the whole header hides
-         that control too, leaving no way back in. */
+      /* Deploy/Rerun/menu are already removed server-side via
+         `toolbarMode = "viewer"` in .streamlit/config.toml — that's the
+         stable, official switch for it. We deliberately do NOT touch
+         [data-testid="stHeader"]/stToolbar with CSS visibility rules here:
+         doing that guesses at internal test-ids that change between
+         Streamlit versions, and on the last deploy it ended up hiding the
+         "reopen sidebar" arrow too, with no way to get it back. Leaving
+         the header alone guarantees that control keeps working. */
       #MainMenu, footer {{visibility: hidden;}}
-      [data-testid="stToolbar"], [data-testid="stDecoration"] {{visibility: hidden !important;}}
-      [data-testid="stHeader"] {{background: transparent !important; box-shadow: none !important;}}
-      [data-testid="stSidebarCollapsedControl"] {{visibility: visible !important; display: flex !important;}}
+      [data-testid="stHeader"] {{background: var(--bg) !important; box-shadow: none !important;}}
       .block-container {{padding-top: 1.5rem; padding-bottom: 6rem; max-width: 860px;}}
+
+      /* The chat input is pinned to the bottom of the viewport outside the
+         centered .block-container, so on a wide layout (or a closed
+         sidebar) it stretches edge-to-edge instead of lining up with the
+         rest of the page. Constrain and center it to match. */
+      [data-testid="stBottomBlockContainer"], [data-testid="stBottom"] > div {{
+        max-width: 860px !important; margin-left: auto !important; margin-right: auto !important;
+      }}
 
       html, body, [class*="css"] {{ font-family: "Inter", "Segoe UI", system-ui, sans-serif; }}
 
