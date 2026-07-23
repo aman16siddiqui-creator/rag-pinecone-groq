@@ -1,0 +1,29 @@
+streamlit>=1.52  # accept_audio on st.chat_input was only added in 1.52 (accept_file alone needs 1.45)
+python-dotenv>=1.0
+
+# PDF processing
+pdfplumber>=0.11
+pdf2image>=1.17
+
+# OCR
+pytesseract>=0.3.10
+Pillow>=10.0
+
+# Chunking
+langchain-text-splitters>=0.2
+
+# Embeddings
+sentence-transformers>=3.0
+
+# Vector DB
+pinecone>=5.0
+
+# LLM (Groq Cloud — mandatory, not OpenAI)
+groq>=0.9
+
+# Speech-to-text (local, no external API key required)
+# Mic recording itself is native to st.chat_input(accept_audio=True) —
+# faster-whisper is only needed to transcribe the recorded clip.
+faster-whisper>=1.0
+
+numpy>=1.24

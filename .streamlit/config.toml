@@ -1,0 +1,17 @@
+[server]
+maxUploadSize = 20
+
+[client]
+# Hides the Deploy button + developer menu (Rerun/Clear cache/etc.) in the
+# top-right toolbar. Without this, Streamlit shows those developer options
+# automatically whenever the app is run via `streamlit run` on localhost —
+# that's the "Deploy" button you were seeing; it's Streamlit's own chrome,
+# not part of this app, and it's meant for pushing to Streamlit Community
+# Cloud, not for viewing the app you're already running locally.
+toolbarMode = "viewer"
+
+[theme]
+primaryColor = "#2E86AB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F4F8"
+textColor = "#1A1A1A"
